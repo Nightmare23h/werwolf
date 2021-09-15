@@ -22,7 +22,7 @@
         <input id="addname" placeholder="Name" type="text">
         <br>
         <button>Add</button>
-        <ul id="playerlist"></ul>
+        <table id="playerlist"></table>
         <script>
             const addButton = document.querySelector("button")
             addButton.addEventListener("click",addPlayer)
@@ -35,16 +35,23 @@
             function addPlayer() {
                 players.push(addnameinput.value)
                 addnameinput.value = "";
-                render(players)
+                render()
 
             }
 
             function render() {
                 playerlist.innerHTML="";
                 players.forEach(player => {
-                    x=document.createElement("li")
-                    playerlist.appendChild(x)
-                    x.textContent = player;
+                    tr=document.createElement("tr")
+                    playerlist.appendChild(tr)
+
+                    td1=document.createElement("td")
+                    td1.textContent = player;
+                    tr.appendChild(td1)
+
+                    td2=document.createElement("td")
+                    
+                    tr.appendChild(td2)
                 
                     
                 });
