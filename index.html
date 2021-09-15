@@ -19,23 +19,35 @@
     </head>
     <body>
         <h1>Welcome to Millers Hollow</h1>
-        <input class="a" placeholder="Name" type="text">
+        <input id="addname" placeholder="Name" type="text">
         <br>
         <button>Add</button>
+        <ul id="playerlist"></ul>
         <script>
             const addButton = document.querySelector("button")
             addButton.addEventListener("click",addPlayer)
+            const playerlist = document.querySelector("#playerlist")
+            const addnameinput = document.querySelector("#addname")
+            
 
             players = [ ]
 
             function addPlayer() {
-                players.push()
+                players.push(addnameinput.value)
+                addnameinput.value = "";
                 render(players)
 
             }
 
             function render() {
+                playerlist.innerHTML="";
+                players.forEach(player => {
+                    x=document.createElement("li")
+                    playerlist.appendChild(x)
+                    x.textContent = player;
                 
+                    
+                });
             }
 
         </script>
