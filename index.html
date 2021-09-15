@@ -85,11 +85,19 @@
                     tr.appendChild(td5)
 
                     td4=document.createElement("td")
-                    td4.innerHTML='<input type="checkbox"><br>';
+                    td4.innerHTML='<input type="checkbox" onclick="checkFluency()" id="fluency" checked><br>';
                     tr.appendChild(td4)
                 
                     
                 });
+            }
+            function checkFluency()
+            {
+                var checkbox = document.getElementById('fluency');
+                if (checkbox.checked != true)
+             {
+                alert("you need to be fluent in English to apply for the job");
+             }
             }
 
         </script>
