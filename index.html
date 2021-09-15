@@ -41,7 +41,13 @@
             players = [ ]
 
             function addPlayer() {
-                players.push(addnameinput.value)
+                players.push({
+                    name: addnameinput.value,
+                    role: "villager",
+                    isInLove: false,
+                    isCaptain: false,
+                    isDead: false,
+                })
                 addnameinput.value = "";
                 render()
 
@@ -54,7 +60,7 @@
                     playerlist.appendChild(tr)
 
                     td1=document.createElement("td")
-                    td1.textContent = player;
+                    td1.textContent = player.name;
                     tr.appendChild(td1)
 
                     td2=document.createElement("td")
