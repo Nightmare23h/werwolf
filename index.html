@@ -22,7 +22,15 @@
         <input id="addname" placeholder="Name" type="text">
         <br>
         <button>Add</button>
-        <table id="playerlist"></table>
+        <table id="playerlist">
+            <tr class="tablehead">
+                <th>Name</th>
+                <th>Role</th>
+                <th>Lovers</th>
+                <th>Captain</th>
+                <th>Dead</th>
+            </tr>
+        </table>
         <script>
             const addButton = document.querySelector("button")
             addButton.addEventListener("click",addPlayer)
@@ -40,7 +48,7 @@
             }
 
             function render() {
-                playerlist.innerHTML="";
+                document.querySelectorAll("#playerlist tr:not(.tablehead)").forEach(elem => {elem.remove()})
                 players.forEach(player => {
                     tr=document.createElement("tr")
                     playerlist.appendChild(tr)
@@ -50,8 +58,29 @@
                     tr.appendChild(td1)
 
                     td2=document.createElement("td")
-                    
+                    td2.innerHTML='<select name="role" class"role">'+
+                                    '<option value="vilager">Villager</option>'+
+                                    '<option value="werewolf">Werewolf</option>'+
+                                    '<option value="witch">Witch</option>'+
+                                    '<option value="fortune_teller">Fortune Teller</option>'+
+                                    '<option value="thief">Thief</option>'+
+                                    '<option value="cupid">Cupid</option>'+
+                                    '<option value="hunter">Hunter</option>'+
+                                    '<option value="little_girl">Little Girl</option>'+
+                                  '</select>';
                     tr.appendChild(td2)
+
+                    td3=document.createElement("td")
+                    td3.innerHTML='<input type="checkbox"><br>';
+                    tr.appendChild(td3)
+
+                    td5=document.createElement("td")
+                    td5.innerHTML='<input type="checkbox"><br>';
+                    tr.appendChild(td5)
+
+                    td4=document.createElement("td")
+                    td4.innerHTML='<input type="checkbox"><br>';
+                    tr.appendChild(td4)
                 
                     
                 });
