@@ -44,7 +44,7 @@
                 players.push({
                     name: addnameinput.value,
                     role: "villager",
-                    isInLove: false,
+                    isLover: false,
                     isCaptain: false,
                     isDead: false,
                 })
@@ -55,8 +55,9 @@
 
             function render() {
                 document.querySelectorAll("#playerlist tr:not(.tablehead)").forEach(elem => {elem.remove()})
-                players.forEach(player => {
+                players.forEach((player, i) => {
                     tr=document.createElement("tr")
+                    tr.setAttribute("data-which", i)
                     playerlist.appendChild(tr)
 
                     td1=document.createElement("td")
@@ -64,7 +65,7 @@
                     tr.appendChild(td1)
 
                     td2=document.createElement("td")
-                    td2.innerHTML='<select name="role" class"role">'+
+                    td2.innerHTML='<select name="role" class="role" oninput="toggleRole(event)">'+
                                     '<option value="vilager">Villager</option>'+
                                     '<option value="werewolf">Werewolf</option>'+
                                     '<option value="witch">Witch</option>'+
@@ -77,27 +78,53 @@
                     tr.appendChild(td2)
 
                     td3=document.createElement("td")
-                    td3.innerHTML='<input type="checkbox"><br>';
+                    td3.innerHTML='<input type="checkbox" onclick="toggleLover(event)" class="isLover"><br>';
                     tr.appendChild(td3)
 
                     td5=document.createElement("td")
-                    td5.innerHTML='<input type="checkbox"><br>';
+                    td5.innerHTML='<input type="checkbox" onclick="toggleCaptain(event)" class="isCaptain"><br>';
                     tr.appendChild(td5)
 
                     td4=document.createElement("td")
-                    td4.innerHTML='<input type="checkbox" onclick="checkFluency()" id="fluency" checked><br>';
+                    td4.innerHTML='<input type="checkbox" onclick="toggleDead(event)" class="isDead"><br>';
                     tr.appendChild(td4)
                 
                     
                 });
             }
-            function checkFluency()
+
+            function toggleRole() {
+                var row = event.target.closest("tr")
+                console.log(row)
+                var select = row.querySelector('.role');
+                console.log(select)
+                var i = row.dataset.which
+                players[Number(i)].role = select.value
+                console.log(i, players)
+            }
+            function toggleLover()
             {
-                var checkbox = document.getElementById('fluency');
-                if (checkbox.checked != true)
-             {
-                alert("you need to be fluent in English to apply for the job");
-             }
+                var row = event.target.closest("tr")
+                var checkbox = row.querySelector('.isLover');
+                var i = row.dataset.which
+                players[Number(i)].isLover = checkbox.checked
+                console.log(i, players)
+            }
+            function toggleCaptain()
+            {
+                var row = event.target.closest("tr")
+                var checkbox = row.querySelector('.isCaptain');
+                var i = row.dataset.which
+                players[Number(i)].isCaptain = checkbox.checked
+                console.log(i, players)
+            }
+            function toggleDead()
+            {
+                var row = event.target.closest("tr")
+                var checkbox = row.querySelector('.isDead');
+                var i = row.dataset.which
+                players[Number(i)].isDead = checkbox.checked
+                console.log(i, players)
             }
 
         </script>
