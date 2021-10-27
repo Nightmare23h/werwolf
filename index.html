@@ -65,16 +65,16 @@
                     tr.appendChild(td1)
 
                     td2=document.createElement("td")
-                    td2.innerHTML='<select name="role" class="role" oninput="toggleRole(event)">'+
-                                    '<option value="vilager">Villager</option>'+
-                                    '<option value="werewolf">Werewolf</option>'+
-                                    '<option value="witch">Witch</option>'+
-                                    '<option value="fortune_teller">Fortune Teller</option>'+
-                                    '<option value="thief">Thief</option>'+
-                                    '<option value="cupid">Cupid</option>'+
-                                    '<option value="hunter">Hunter</option>'+
-                                    '<option value="little_girl">Little Girl</option>'+
-                                  '</select>';
+                    td2.innerHTML=`<select name="role" class="role" oninput="toggleRole(event)">
+                                    <option value="vilager" ${player.role=="vilager" ? "selected" : ""}>Villager</option>
+                                    <option value="werewolf" ${player.role=="werewolf" ? "selected" : ""}>Werewolf</option>
+                                    <option value="witch" ${player.role=="witch" ? "selected" : ""}>Witch</option>
+                                    <option value="fortune_teller" ${player.role=="fortune_teller" ? "selected" : ""}>Fortune Teller</option>
+                                    <option value="thief" ${player.role=="thief" ? "selected" : ""}>Thief</option>
+                                    <option value="cupid" ${player.role=="cupid" ? "selected" : ""}>Cupid</option>
+                                    <option value="hunter" ${player.role=="hunter" ? "selected" : ""}>Hunter</option>
+                                    <option value="little_girl" ${player.role=="little_girl" ? "selected" : ""}>Little Girl</option>
+                                  </select>`
                     tr.appendChild(td2)
 
                     td3=document.createElement("td")
