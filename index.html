@@ -12,7 +12,10 @@
             }
             h1 {text-align: center;}
             input{margin:auto;display:block;}
-            button{margin:auto;display:block;}
+            button#add{margin:auto;display:block;}
+            button#start{margin-left:25%;display:block;}
+
+            button#start.hidden {display: none;}
             
 
         </style>
@@ -21,7 +24,7 @@
         <h1>Welcome to Millers Hollow</h1>
         <input id="addname" placeholder="Name" type="text">
         <br>
-        <button>Add</button>
+        <button id="add">Add</button>
         <table id="playerlist">
             <tr class="tablehead">
                 <th>Name</th>
@@ -31,14 +34,22 @@
                 <th>Dead</th>
             </tr>
         </table>
+        <button id="start" class="hidden">Start</button>
         <script>
-            const addButton = document.querySelector("button")
+            const addButton = document.getElementById("add")
             addButton.addEventListener("click",addPlayer)
             const playerlist = document.querySelector("#playerlist")
             const addnameinput = document.querySelector("#addname")
-            
+
+            const startButton = document.getElementById("start")
+            startButton.addEventListener("click",startGame)
+        
 
             players = [ ]
+
+            function startGame() {
+                console.log(14)
+            }
 
             function addPlayer() {
                 players.push({
@@ -91,6 +102,9 @@
                 
                     
                 });
+                tr=document.createElement("tr")
+                document.getElementById("start").classList.remove("hidden")
+                playerlist.appendChild(tr)
             }
 
             function toggleRole() {
