@@ -13,15 +13,18 @@
             h1 {text-align: center;}
             input{margin:auto;display:block;}
             button#add{margin:auto;display:block;}
-            button#start{margin-left:25%;display:block;}
-
+            button#start{margin-left:10%;display:block;}
             button#start.hidden {display: none;}
-            
+            text#game{margin-left:70%;margin-top:4%;position:absolute;display: block;}
+            text#game.hidden{display: none;}
+
+        
 
         </style>
     </head>
     <body>
         <h1>Welcome to Millers Hollow</h1>
+        <text id=game class="hidden">Hallo <span id="test"></span>du da</text>
         <input id="addname" placeholder="Name" type="text">
         <br>
         <button id="add">Add</button>
@@ -43,12 +46,20 @@
 
             const startButton = document.getElementById("start")
             startButton.addEventListener("click",startGame)
-        
 
             players = [ ]
 
             function startGame() {
-                console.log(14)
+                document.getElementById("game").classList.remove("hidden")
+                document.getElementById("test").innerHTML = players.filter(player => player.role == "villager").map(player => player.name).join(", ");
+                document.getElementById("t").innerHTML = players.filter(player => player.role == "thief").map(player => player.name).join(", ");
+                document.getElementById("tst").innerHTML = players.filter(player => player.role == "witch").map(player => player.name).join(", ");
+                document.getElementById("tet").innerHTML = players.filter(player => player.role == "werewolf").map(player => player.name).join(", ");
+                document.getElementById("st").innerHTML = players.filter(player => player.role == "fortune_teller").map(player => player.name).join(", ");
+                document.getElementById("t").innerHTML = players.filter(player => player.role == "cupid").map(player => player.name).join(", ");
+                document.getElementById("tests").innerHTML = players.filter(player => player.role == "hunter").map(player => player.name).join(", ");
+                document.getElementById("testss").innerHTML = players.filter(player => player.role == "little_girl").map(player => player.name).join(", ");
+
             }
 
             function addPlayer() {
