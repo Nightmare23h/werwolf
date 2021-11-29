@@ -1,173 +1,245 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Werwölfle</title>
+
+<head>
+    <title>Werwölfle</title>
 
 
-        <style>
+    <style>
+        * {
+            background-color: black;
+            color: white;
+        }
 
-            * {
-                background-color: black;
-                color: white;
-            }
-            h1 {text-align: center;}
-            input{margin:auto;display:block;}
-            button#add{margin:auto;display:block;}
-            button#start{margin-left:10%;display:block;}
-            button#start.hidden {display: none;}
-            text#game{margin-left:70%;margin-top:4%;position:absolute;display: block;}
-            text#game.hidden{display: none;}
-            button#continue.hidden{display: none;}
-            button#continue{margin-left:72%;display:block;}
+        h1 {
+            text-align: center;
+        }
 
-        
+        input {
+            margin: auto;
+            display: block;
+        }
 
-        </style>
-    </head>
-    <body>
-        <h1>Welcome to Millers Hollow</h1>
-        <text id=game class="hidden">Welcome to the game <br> Press Continue to start</text>
-        <input id="addname" placeholder="Name" type="text">
-        <br>
-        <button id="add">Add</button>
-        <table id="playerlist">
-            <tr class="tablehead">
-                <th>Name</th>
-                <th>Role</th>
-                <th>Lovers</th>
-                <th>Captain</th>
-                <th>Dead</th>
-            </tr>
-        </table>
-        <button id="start" class="hidden">Start</button>
-        <button id="continue" class="hidden">Continue</button>
-        <script>
-            const addButton = document.getElementById("add")
-            addButton.addEventListener("click",addPlayer)
-            const playerlist = document.querySelector("#playerlist")
-            const addnameinput = document.querySelector("#addname")
+        button#add {
+            margin: auto;
+            display: block;
+        }
 
-            const startButton = document.getElementById("start")
-            startButton.addEventListener("click",startGame)
+        button#start {
+            margin-left: 10%;
+            display: block;
+        }
 
-            const continueButton = document.getElementById("continue")
-            continueButton.addEventListener("click",continueGame)
+        button#start.hidden {
+            display: none;
+        }
 
-            players = [ ]
+        text#game {
+            margin-left: 70%;
+            margin-top: 4%;
+            position: absolute;
+            display: block;
+        }
 
-            function addPlayer() {
-                players.push({
-                    name: addnameinput.value,
-                    role: "villager",
-                    isLover: false,
-                    isCaptain: false,
-                    isDead: false,
-                })
-                addnameinput.value = "";
-                document.getElementById("start").classList.remove("hidden")
-                render()
+        text#game.hidden {
+            display: none;
+        }
 
-            }
+        button#continue.hidden {
+            display: none;
+        }
 
-            function startGame() {
-                document.getElementById("game").classList.remove("hidden")
-                document.getElementById("start").classList.add("hidden")
-                document.getElementById("continue").classList.remove("hidden")
-                document.getElementById("test").innerHTML = players.filter(player => player.role == "villager").map(player => player.name).join(", ");
-                document.getElementById("t").innerHTML = players.filter(player => player.role == "thief").map(player => player.name).join(", ");
-                document.getElementById("tst").innerHTML = players.filter(player => player.role == "witch").map(player => player.name).join(", ");
-                document.getElementById("tet").innerHTML = players.filter(player => player.role == "werewolf").map(player => player.name).join(", ");
-                document.getElementById("st").innerHTML = players.filter(player => player.role == "fortune_teller").map(player => player.name).join(", ");
-                document.getElementById("t").innerHTML = players.filter(player => player.role == "cupid").map(player => player.name).join(", ");
-                document.getElementById("tests").innerHTML = players.filter(player => player.role == "hunter").map(player => player.name).join(", ");
-                document.getElementById("testss").innerHTML = players.filter(player => player.role == "little_girl").map(player => player.name).join(", ");
-               
+        button#continue {
+            margin-left: 72%;
+            display: block;
+        }
 
-            }
+        text#game2 {
+            margin-left: 70%;
+            margin-top: 4%;
+            position: absolute;
+            display: block;
+        }
 
-            function render() {
-                document.querySelectorAll("#playerlist tr:not(.tablehead)").forEach(elem => {elem.remove()})
-                players.forEach((player, i) => {
-                    tr=document.createElement("tr")
-                    tr.setAttribute("data-which", i)
-                    playerlist.appendChild(tr)
+        text#game2.hidden {
+            display: none;
+        }
 
-                    td1=document.createElement("td")
-                    td1.textContent = player.name;
-                    tr.appendChild(td1)
+        text#game3 {
+            margin-left: 70%;
+            margin-top: 4%;
+            position: absolute;
+            display: block;
+        }
 
-                    td2=document.createElement("td")
-                    td2.innerHTML=`<select name="role" class="role" oninput="toggleRole(event)">
-                                    <option value="vilager" ${player.role=="vilager" ? "selected" : ""}>Villager</option>
-                                    <option value="werewolf" ${player.role=="werewolf" ? "selected" : ""}>Werewolf</option>
-                                    <option value="witch" ${player.role=="witch" ? "selected" : ""}>Witch</option>
-                                    <option value="fortune_teller" ${player.role=="fortune_teller" ? "selected" : ""}>Fortune Teller</option>
-                                    <option value="thief" ${player.role=="thief" ? "selected" : ""}>Thief</option>
-                                    <option value="cupid" ${player.role=="cupid" ? "selected" : ""}>Cupid</option>
-                                    <option value="hunter" ${player.role=="hunter" ? "selected" : ""}>Hunter</option>
-                                    <option value="little_girl" ${player.role=="little_girl" ? "selected" : ""}>Little Girl</option>
-                                  </select>`
-                    tr.appendChild(td2)
+        text#game3.hidden {
+            display: none;
+        }
 
-                    td3=document.createElement("td")
-                    td3.innerHTML='<input type="checkbox" onclick="toggleLover(event)" class="isLover"><br>';
-                    tr.appendChild(td3)
+        img {
+            width: 20%;
+            margin-left: 70%;
+            margin-top: 20%;
+            position: absolute;
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
 
-                    td5=document.createElement("td")
-                    td5.innerHTML='<input type="checkbox" onclick="toggleCaptain(event)" class="isCaptain"><br>';
-                    tr.appendChild(td5)
+<body>
+    <h1>Welcome to Millers Hollow</h1>
+    <text id=game class="hidden">Welcome to the game <br> Press Continue to start</text>
+    <text id=game2 class="hidden">First things first: Everyone falls asleep</text>
+    <text id=game3 class="hidden">Now the Thief (<span id="t"></span>) awakes</text>
+    <input id="addname" placeholder="Name" type="text">
+    <br>
+    <button id="add">Add</button>
+    <img src="./Capture.PNG">
+    <table id="playerlist">
+        <tr class="tablehead">
+            <th>Name</th>
+            <th>Role</th>
+            <th>Lovers</th>
+            <th>Captain</th>
+            <th>Dead</th>
+        </tr>
+    </table>
+    <button id="start" class="hidden">Start</button>
+    <button id="continue" class="hidden">Continue</button>
+    <script>
+        const addButton = document.getElementById("add")
+        addButton.addEventListener("click", addPlayer)
+        const playerlist = document.querySelector("#playerlist")
+        const addnameinput = document.querySelector("#addname")
 
-                    td4=document.createElement("td")
-                    td4.innerHTML='<input type="checkbox" onclick="toggleDead(event)" class="isDead"><br>';
-                    tr.appendChild(td4)
-                
-                    
-                });
-                tr=document.createElement("tr")
+        const startButton = document.getElementById("start")
+        startButton.addEventListener("click", startGame)
+
+        const continueButton = document.getElementById("continue")
+        continueButton.addEventListener("click", continueGame)
+
+        var x = 0;
+
+        players = []
+
+        function addPlayer() {
+            players.push({
+                name: addnameinput.value,
+                role: "villager",
+                isLover: false,
+                isCaptain: false,
+                isDead: false,
+            })
+            addnameinput.value = "";
+            document.getElementById("start").classList.remove("hidden")
+            render()
+
+        }
+
+        function startGame() {
+            document.getElementById("game").classList.remove("hidden")
+            document.getElementById("start").classList.add("hidden")
+            document.getElementById("continue").classList.remove("hidden")
+            document.getElementById("test").innerHTML = players.filter(player => player.role == "villager").map(player => player.name).join(", ");
+            document.getElementById("t").innerHTML = players.filter(player => player.role == "thief").map(player => player.name).join(", ");
+            document.getElementById("tst").innerHTML = players.filter(player => player.role == "witch").map(player => player.name).join(", ");
+            document.getElementById("tet").innerHTML = players.filter(player => player.role == "werewolf").map(player => player.name).join(", ");
+            document.getElementById("st").innerHTML = players.filter(player => player.role == "fortune_teller").map(player => player.name).join(", ");
+            document.getElementById("t").innerHTML = players.filter(player => player.role == "cupid").map(player => player.name).join(", ");
+            document.getElementById("tests").innerHTML = players.filter(player => player.role == "hunter").map(player => player.name).join(", ");
+            document.getElementById("testss").innerHTML = players.filter(player => player.role == "little_girl").map(player => player.name).join(", ");
+
+
+        }
+
+        function render() {
+            document.querySelectorAll("#playerlist tr:not(.tablehead)").forEach(elem => { elem.remove() })
+            players.forEach((player, i) => {
+                tr = document.createElement("tr")
+                tr.setAttribute("data-which", i)
                 playerlist.appendChild(tr)
-            }
 
-            function toggleRole() {
-                var row = event.target.closest("tr")
-                console.log(row)
-                var select = row.querySelector('.role');
-                console.log(select)
-                var i = row.dataset.which
-                players[Number(i)].role = select.value
-                console.log(i, players)
-            }
-            function toggleLover()
-            {
-                var row = event.target.closest("tr")
-                var checkbox = row.querySelector('.isLover');
-                var i = row.dataset.which
-                players[Number(i)].isLover = checkbox.checked
-                console.log(i, players)
-            }
-            function toggleCaptain()
-            {
-                var row = event.target.closest("tr")
-                var checkbox = row.querySelector('.isCaptain');
-                var i = row.dataset.which
-                players[Number(i)].isCaptain = checkbox.checked
-                console.log(i, players)
-            }
-            function toggleDead()
-            {
-                var row = event.target.closest("tr")
-                var checkbox = row.querySelector('.isDead');
-                var i = row.dataset.which
-                players[Number(i)].isDead = checkbox.checked
-                console.log(i, players)
-            }
+                td1 = document.createElement("td")
+                td1.textContent = player.name;
+                tr.appendChild(td1)
 
-            function continueGame()
-            {
+                td2 = document.createElement("td")
+                td2.innerHTML = `<select name="role" class="role" oninput="toggleRole(event)">
+                                    <option value="vilager" ${player.role == "vilager" ? "selected" : ""}>Villager</option>
+                                    <option value="werewolf" ${player.role == "werewolf" ? "selected" : ""}>Werewolf</option>
+                                    <option value="witch" ${player.role == "witch" ? "selected" : ""}>Witch</option>
+                                    <option value="fortune_teller" ${player.role == "fortune_teller" ? "selected" : ""}>Fortune Teller</option>
+                                    <option value="thief" ${player.role == "thief" ? "selected" : ""}>Thief</option>
+                                    <option value="cupid" ${player.role == "cupid" ? "selected" : ""}>Cupid</option>
+                                    <option value="hunter" ${player.role == "hunter" ? "selected" : ""}>Hunter</option>
+                                    <option value="little_girl" ${player.role == "little_girl" ? "selected" : ""}>Little Girl</option>
+                                  </select>`
+                tr.appendChild(td2)
+
+                td3 = document.createElement("td")
+                td3.innerHTML = '<input type="checkbox" onclick="toggleLover(event)" class="isLover"><br>';
+                tr.appendChild(td3)
+
+                td5 = document.createElement("td")
+                td5.innerHTML = '<input type="checkbox" onclick="toggleCaptain(event)" class="isCaptain"><br>';
+                tr.appendChild(td5)
+
+                td4 = document.createElement("td")
+                td4.innerHTML = '<input type="checkbox" onclick="toggleDead(event)" class="isDead"><br>';
+                tr.appendChild(td4)
+
+
+            });
+            tr = document.createElement("tr")
+            playerlist.appendChild(tr)
+        }
+
+        function toggleRole() {
+            var row = event.target.closest("tr")
+            console.log(row)
+            var select = row.querySelector('.role');
+            console.log(select)
+            var i = row.dataset.which
+            players[Number(i)].role = select.value
+            console.log(i, players)
+        }
+        function toggleLover() {
+            var row = event.target.closest("tr")
+            var checkbox = row.querySelector('.isLover');
+            var i = row.dataset.which
+            players[Number(i)].isLover = checkbox.checked
+            console.log(i, players)
+        }
+        function toggleCaptain() {
+            var row = event.target.closest("tr")
+            var checkbox = row.querySelector('.isCaptain');
+            var i = row.dataset.which
+            players[Number(i)].isCaptain = checkbox.checked
+            console.log(i, players)
+        }
+        function toggleDead() {
+            var row = event.target.closest("tr")
+            var checkbox = row.querySelector('.isDead');
+            var i = row.dataset.which
+            players[Number(i)].isDead = checkbox.checked
+            console.log(i, players)
+        }
+
+        function continueGame() {
+            x++;
+            if (x == 1) {
                 document.getElementById("game").classList.add("hidden")
-                
+                document.getElementById("game2").classList.remove("hidden")
+            } else if (x == 2) {
+                document.getElementById("game3").classList.remove("hidden")
+                document.getElementById("game2").classList.add("hidden")
             }
 
-        </script>
+        }
 
-    </body>
+    </script>
+
+</body>
+
 </html>
