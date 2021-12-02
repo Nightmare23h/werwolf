@@ -76,6 +76,28 @@
             display: none;
         }
 
+        text#game4 {
+            margin-left: 70%;
+            margin-top: 4%;
+            position: absolute;
+            display: block;
+        }
+
+        text#game4.hidden {
+            display: none;
+        }
+        text#game5 {
+            margin-left: 70%;
+            margin-top: 4%;
+            position: absolute;
+            display: block;
+        }
+
+        text#game5.hidden {
+            display: none;
+        }
+        
+
         img {
             width: 20%;
             margin-left: 70%;
@@ -84,6 +106,13 @@
             display: block;
             opacity: 1;
         }
+        p#infotext {
+            margin-left: 70%;
+            margin-top: 43%;
+            position: absolute;
+            display: block;
+        }
+
     </style>
 </head>
 
@@ -91,11 +120,14 @@
     <h1>Welcome to Millers Hollow</h1>
     <text id=game class="hidden">Welcome to the game <br> Press Continue to start</text>
     <text id=game2 class="hidden">First things first: Everyone falls asleep</text>
-    <text id=game3 class="hidden">Now the Thief (<span id="t"></span>) awakes</text>
+    <text id=game3 class="hidden">Now Cupid (<span id="armor"></span>) awakes</text>
+    <text id=game4 class="hidden">He may now choose two players, which will fall in love</text>
+    <text id=game5 class="hidden">The two lovers are <span id="verliebte"></span>, you will now notify them by tapping them on the head</text>
     <input id="addname" placeholder="Name" type="text">
     <br>
     <button id="add">Add</button>
     <img src="./Capture.PNG">
+    <p id="infotext">Villagers can be interchanged with the other non-werewolf cards</p>
     <table id="playerlist">
         <tr class="tablehead">
             <th>Name</th>
@@ -141,14 +173,15 @@
             document.getElementById("game").classList.remove("hidden")
             document.getElementById("start").classList.add("hidden")
             document.getElementById("continue").classList.remove("hidden")
-            document.getElementById("test").innerHTML = players.filter(player => player.role == "villager").map(player => player.name).join(", ");
-            document.getElementById("t").innerHTML = players.filter(player => player.role == "thief").map(player => player.name).join(", ");
-            document.getElementById("tst").innerHTML = players.filter(player => player.role == "witch").map(player => player.name).join(", ");
-            document.getElementById("tet").innerHTML = players.filter(player => player.role == "werewolf").map(player => player.name).join(", ");
-            document.getElementById("st").innerHTML = players.filter(player => player.role == "fortune_teller").map(player => player.name).join(", ");
-            document.getElementById("t").innerHTML = players.filter(player => player.role == "cupid").map(player => player.name).join(", ");
-            document.getElementById("tests").innerHTML = players.filter(player => player.role == "hunter").map(player => player.name).join(", ");
-            document.getElementById("testss").innerHTML = players.filter(player => player.role == "little_girl").map(player => player.name).join(", ");
+            //document.getElementById("bewohner").innerHTML = players.filter(player => player.role == "villager").map(player => player.name).join(", ");
+            //document.getElementById("dieb").innerHTML = players.filter(player => player.role == "thief").map(player => player.name).join(", ");
+            //document.getElementById("verliebte").innerHTML = players.filter(player => player.islover).map(player => player.name).join(", ");
+            //document.getElementById("hexe").innerHTML = players.filter(player => player.role == "witch").map(player => player.name).join(", ");
+            //document.getElementById("werwolf").innerHTML = players.filter(player => player.role == "werewolf").map(player => player.name).join(", ");
+            //document.getElementById("wahrsagerin").innerHTML = players.filter(player => player.role == "fortune_teller").map(player => player.name).join(", ");
+            document.getElementById("armor").innerHTML = players.filter(player => player.role == "cupid").map(player => player.name).join(", ");
+            //document.getElementById("jäger").innerHTML = players.filter(player => player.role == "hunter").map(player => player.name).join(", ");
+            //document.getElementById("mädchen").innerHTML = players.filter(player => player.role == "little_girl").map(player => player.name).join(", ");
 
 
         }
@@ -234,6 +267,13 @@
             } else if (x == 2) {
                 document.getElementById("game3").classList.remove("hidden")
                 document.getElementById("game2").classList.add("hidden")
+            } else if (x == 3) {
+                document.getElementById("game3").classList.add("hidden")
+                document.getElementById("game4").classList.remove("hidden")
+            } else if (x == 4) {
+                document.getElementById("game4").classList.add("hidden")
+                document.getElementById("verliebte").innerHTML = players.filter(players.islover).map(player => player.name).join(", ");
+                document.getElementById("game5").classList.remove("hidden")
             }
 
         }
